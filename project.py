@@ -23,7 +23,7 @@ class Character:
         if damage <= 0:
             damage = 1
         enemy.take_damage(damage)
-        print(f"** {self.name} attacks {enemy.name} for {damage} damage. **")
+        print(f"⚔️ {self.name} attacks {enemy.name} for {damage} damage. ⚔️")
 
     # This method handles the character leveling up.
     def level_up(self):
@@ -32,7 +32,7 @@ class Character:
         self.health = self.max_health
         self.attack += 2
         self.defense += 1
-        print(f"** Congratulations! You leveled up to level {self.level}. **")
+        print(f"🎉 Congratulations! You leveled up to level {self.level}. 🎉")
 
 ### Enemy Class Definition ###
 # This class defines an enemy in the game with attributes like name, health, attack, defense, and experience.
@@ -54,7 +54,7 @@ class Enemy:
         if damage <= 0:
             damage = 1
         player.take_damage(damage)
-        print(f"** {self.name} attacks {player.name} for {damage} damage. **")
+        print(f"⚔️ {self.name} attacks {player.name} for {damage} damage. ⚔️")
 
 ### Item Class Definition ###
 # This class defines an item in the game with attributes like name, description, and stats.
@@ -79,14 +79,14 @@ def encounter_enemy(player, enemy):
     while player.health > 0 and enemy.health > 0:
         player.attack_enemy(enemy)
         if enemy.health <= 0:
-            print(f"** You defeated {enemy.name}! **")
+            print(f"💀 You defeated {enemy.name}! 💀")
             player.experience += enemy.experience
             if player.experience >= player.level * 30:  # Adjust the experience threshold as needed
                 player.level_up()
             break
         enemy.attack_enemy(player)
         if player.health <= 0:
-            print("** You were defeated! **")
+            print("💀 You were defeated! 💀")
             break
 
 ### Game Play Function ###
@@ -96,25 +96,25 @@ def play_game():
     player = create_character(player_name)
 
     while player.health > 0:
-        print(f"\n** Your health: {player.health} **")
-        print(f"** Your experience: {player.experience} **")
-        print(f"** Your level: {player.level} **")
+        print(f"\n❤️ Your health: {player.health} ❤️")
+        print(f"⭐ Your experience: {player.experience} ⭐")
+        print(f"🏆 Your level: {player.level} 🏆")
 
         user_input = input("\nWhat do you want to do? (explore, rest, check stats, quit) ").lower()
 
         if user_input == "explore":
             enemy = create_enemy("Goblin")
-            print(f"** You encountered a {enemy.name}! **")
+            print(f"👹 You encountered a {enemy.name}! 👹")
             encounter_enemy(player, enemy)
         elif user_input == "rest":
             player.health += 10
-            print("** You rested and recovered 10 health points. **")
+            print("💤 You rested and recovered 10 health points. 💤")
         elif user_input == "check stats":
-            print(f"** Health: {player.health} **")
-            print(f"** Attack: {player.attack} **")
-            print(f"** Defense: {player.defense} **")
-            print(f"** Experience: {player.experience} **")
-            print(f"** Level: {player.level} **")
+            print(f"❤️ Health: {player.health} ❤️")
+            print(f"⚔️ Attack: {player.attack} ⚔️")
+            print(f"🛡️ Defense: {player.defense} 🛡️")
+            print(f"⭐ Experience: {player.experience} ⭐")
+            print(f"🏆 Level: {player.level} 🏆")
         elif user_input == "quit":
             quit = input("Are you sure? You are gonna lose your progress!! ").lower()
             if quit == "yes" or quit == "y":
@@ -122,9 +122,9 @@ def play_game():
             elif quit == "no" or quit == "n":
                 continue
             else:
-                print("** Invalid command. **")
+                print("❌ Invalid command. ❌")
         else:
-            print("** Invalid command. **")
+            print("❌ Invalid command. ❌")
 
 ### Main Execution ###
 if __name__ == "__main__":
